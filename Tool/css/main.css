@@ -1,0 +1,269 @@
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-family: 'Lato', sans-serif;
+	line-height: 1;
+}
+body {
+	background-color: #f5f6f8;
+	overflow: hidden;
+}
+.topBar{
+	width: 100%;
+	height: 80px;
+	background-color: #98d7ec;
+	display: flex;
+	justify-content: space-between;
+}
+.topBar div{
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+.left{
+	width: 40%;
+	float: left;
+	color: #313443;
+}
+#homeButton{
+	width: 80px;
+	background-color: #25b1f7;
+	box-sizing: border-box;
+	color: white;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	transition: 500ms;
+}
+.left a{
+	text-decoration: none;
+	height: 100%;
+}
+.left a:hover #homeButton{
+	color: #22252e;
+	transition: 500ms;
+}
+#homeButton i{
+	margin-bottom: 10px;
+}
+#projectTitle{
+	width: 80%;
+	margin-left: 30px;
+}
+#projectTitle i{
+	margin-right: 10px;
+}
+.right{
+	padding-right: 30px;
+	float: right;
+}
+.right button, .right a {
+  background-color: #98d7ec;
+  box-sizing: border-box;
+  color: #313443;
+  cursor: pointer;
+  display: inline-block;
+  border: none;
+  outline: none;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  margin: 2px;
+  transition: all ease-out 120ms;
+}
+.right button:hover, a:hover{
+	cursor: pointer;
+	background-color: #313443;
+	color: white;
+	transition: all ease-out 120ms;
+}
+.right i{
+	margin-right: 5px;
+}
+#export{
+	background-color: #313443;
+	color: white;
+}
+#export:hover{
+	box-sizing: border-box;
+	border: 2px solid #313443;
+	background-color: #98d7ec;
+	color: #313443;
+}
+.mainSection{
+	width: 100%;
+	display: flex;
+}
+.canvSection{
+	width: 100%;
+}
+.tools{
+	display: flex;
+}
+
+.canv{
+	height: calc(100vh - 130px);
+	background-color: white;
+	display: flex;
+	justify-content: center;
+	box-sizing: border-box;
+	padding: 30px;
+	padding-bottom: 50px;
+	overflow: scroll;
+}
+.commands{
+	height: 50px;
+	background-color: aliceblue;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	transition: 500ms;
+}
+.commands button,select,input{
+	width: 50px;
+	height: 100%;
+	background: none;
+	border: none;
+	outline: none;
+	transition: 200ms;
+}
+.commands .tooltip{
+	display: none;
+}
+.commands button:hover{
+	background-color: #313443;
+	padding: 0px 5px;
+	color: white;
+	width: 120px;
+	/* transition: 200ms; */
+}
+.commands button:hover span{
+	display: inline;
+	margin-left: 5px;
+}
+.commands button:hover i{
+	color: white;
+}
+.commands i{
+	font-size: 20px;
+	color: #313443;
+
+}
+
+#fontSelector{
+	/* display: none; */
+	width: 15%;
+}
+#fontSelector:hover{
+	border: 1px solid #313443;
+	padding: 10px;
+}
+#fontSelector > option{
+	font-size: 20px;
+}
+
+.tools .expandedMenu{
+	width: 260px;
+	height: calc(100vh - 80px);
+	display: none;
+	background-color: #585c72;
+	padding: 10px;
+	box-sizing: border-box;
+	overflow-y: scroll;
+}
+.expandedMenu::-webkit-scrollbar{
+	display: none;
+}
+.expandedMenu div{
+	width: 45%;
+	height: 100px;
+	margin: 5px;
+	border-radius: 8px;
+	border: 1px solid #98d7ec;
+	float: left;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+}
+.expandedMenu div:hover{
+	background-color: #313443;
+}
+#shapesMenu{
+	color: white;
+}
+#shapesMenu img{	
+	filter: invert(83%) sepia(11%) saturate(1076%) hue-rotate(156deg) brightness(100%) contrast(86%);
+}
+#templatesMenu{
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-family: "Pacifico-Regular";
+	color: azure;
+	font-size: larger;
+}
+.sidebar-navigation {
+	display: inline-block;
+	min-height: 100vh;
+	width: 80px;
+	background-color: #313443;
+	float: left;
+}
+.sidebar-navigation ul {
+	text-align: center;
+	color: white;
+}
+.sidebar-navigation ul li {
+	padding: 28px 0;
+	cursor: pointer;
+	transition: all ease-out 120ms;
+	border-bottom: 1px solid #585c72;
+}
+.sidebar-navigation ul li i {
+	display: block;
+	font-size: 24px;
+	transition: all ease 450ms;
+}
+.sidebar-navigation ul li .tooltip {
+	display: inline-block;
+	position: absolute;
+	background-color: #313443;
+	padding: 8px 15px;
+	border-radius: 3px;
+	margin-top: -26px;
+	left: 90px;
+	opacity: 0;
+	visibility: hidden;
+	font-size: 13px;
+	letter-spacing: 0.5px;
+	z-index: 100;
+}
+.sidebar-navigation ul li .tooltip:before {
+	content: '';
+	display: block;
+	position: absolute;
+	left: -4px;
+	top: 10px;
+	transform: rotate(45deg);
+	width: 10px;
+	height: 10px;
+	background-color: inherit;
+}
+.sidebar-navigation ul li:hover {
+	background-color: #22252e;
+}
+.sidebar-navigation ul li:hover .tooltip {
+	visibility: visible;
+	opacity: 1;
+}
+.sidebar-navigation ul li.active {
+	background-color: #22252e;
+}
+.sidebar-navigation ul li.active i {
+	color: #98d7ec;
+}
+
+

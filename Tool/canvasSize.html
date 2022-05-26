@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/enterSize.css">
+    <title>Document</title>
+     <!-- favicon -->
+     <link rel="shortcut icon" href="../favicon.ico" />
+</head>
+
+<body>
+
+    <div id="login-box">
+        <form action="tool.html" method="get">
+        <div class="left">
+            <h2>Create <br>New Canvas</h2>
+
+            <input type="text" name="projectname" placeholder="Project Name" />
+            <div class="res">
+                <input type="number" min="1" step="0.01" name="width" id="width" placeholder="Width">
+                <p>X</p>
+                <input type="number" min="1" step="0.01" name="height" id="height" placeholder="Height">
+            </div>
+            
+            <select name="unit" id="unit">
+                <option value="px">Pixels</option>
+                <option value="in">Inches</option>
+                <option value="cm">Centi-Meters</option>
+                <option value="mm">Mili-Meters</option>
+            </select>
+
+            <input type="submit" name="createCanvas" value="Create" />
+            <a href="index.php">Back</a>
+        </div>
+
+        <div class="right">
+            <span class="tempTitle">Select Resolution<br />Template</span>
+            <div class="line"></div>
+            <div class="templates">
+                <div class="temp">
+                    <h3>A3</h3>
+                    <p>297 x 420 mm</p>
+                </div>
+                <div class="temp">
+                    <h3>A4</h3>
+                    <p>210 x 297 mm</p>
+                </div>
+                <div class="temp">
+                    <h3>A5</h3>
+                    <p>148 x 210 mm</p>
+                </div>
+                <div class="temp">
+                    <h3>Letter</h3>
+                    <p>8.5 x 11 in</p>
+                </div>
+                <div class="temp">
+                    <h3>Card</h3>
+                    <p>3.5 x 2 in</p>
+                </div>
+                <div class="temp">
+                    <h3>Logo</h3>
+                    <p>500 x 500 px</p>
+                </div>
+                <div class="temp">
+                    <h3>HD</h3>
+                    <p>1280 x 720 px</p>
+                </div>
+                <div class="temp">
+                    <h3>Profile</h3>
+                    <p>800 x 800 px</p>
+                </div>
+                <div class="temp">
+                    <h3>B3</h3>
+                    <p>353 x 500 mm</p>
+                </div>
+                <div class="temp">
+                    <h3>B4</h3>
+                    <p>250 x 353 mm</p>
+                </div>
+            </div>
+        </div>
+        <div class="or">OR</div>
+
+        </form>
+    </div>
+    <script src="https://kit.fontawesome.com/767ca86b1a.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

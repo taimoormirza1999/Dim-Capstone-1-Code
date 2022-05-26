@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tool</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link href="./lib/cropper.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/767ca86b1a.js" crossorigin="anonymous"></script>
+     <!-- favicon -->
+     <link rel="shortcut icon" href="../favicon.ico" />
+     <style>
+
+.tools .expandedMenu{
+    width:270px;
+}
+     </style>
+</head>
+<body>
+
+    <div class="topBar">
+        <div class="left">
+            <a href="../index.php"><div id="homeButton">
+                <i class="fa-solid fa-house"></i>
+                <p>Home</p>
+            </div></a>
+            <div id="projectTitle">
+                <i class="fa-solid fa-file-image"></i><p id="title">Project Title</p>
+            </div>
+        </div>
+        <div class="right">
+            <button onclick="clearCanvas(canvas)"><i class="fa-regular fa-circle-xmark"></i>Clear</button>
+            <button onclick="saveCanvas(canvas)"><i class="fa-regular fa-floppy-disk"></i>Save</button>
+            <button onclick="restoreCanvas(canvas, jsonState)"><i class="fa-solid fa-arrows-rotate"></i>Load</button>
+            <a href="canvasSize.html"><i class="fa-solid fa-expand"></i>Resize</a>
+            <button onclick="download(canvas)" id="export"><i class="fa-solid fa-file-export"></i>Export PNG</button>
+        </div>
+    </div>
+    <div class="mainSection">
+        <div class="tools">
+            <nav class="sidebar-navigation">
+                <ul id="navItems">
+                    <li id="shapes">
+                        <i class="fa-solid fa-shapes"></i>
+                        <span class="tooltip">Insert Shapes</span>
+                    </li>
+                    <li id="upload" onclick="uploadImage()">
+                        <input id="myImg" type="file" accept=".svg,image/*" hidden>
+                        <i class="fa-solid fa-file-arrow-up"></i>
+                        <span class="tooltip">Upload Image</span>
+                    </li>
+                    <li id="addtext" onclick="addText(canvas)">
+                        <i class="fa-solid fa-font"></i>
+                        <span class="tooltip">Add Text</span>
+                    </li>
+                    <li id="draw" onclick="toggleMode(modes.drawing)">
+                        <i class="fa-solid fa-pencil"></i>
+                        <span class="tooltip">Toggle Drawing Mode</span>
+                    </li>
+                    <li id="templates">
+                        <i class="fa-solid fa-images"></i>
+                        <span class="tooltip">Design Templates</span>
+                    </li>
+                </ul>
+            </nav>
+            <div class="expandedMenu" id="shapesMenu">
+                <div onclick="createRect(canvas)">
+                     <img src="./shapes/square.svg" width="50px" id="square" alt="Rectangle Shape" srcset="">
+                </div>
+                <div onclick="createCirc(canvas)">
+                    <img src="./shapes/circle.svg" width="50px" alt="Circle Shape" srcset="">
+                </div>
+                <div onclick="createTriangle(canvas)">
+                    <img src="./shapes/triangle.svg" width="50px" alt="Triangle Shape" srcset="">
+                </div>
+                <div onclick="createEllipse(canvas)">
+                    <img src="./shapes/ellipse.svg" width="50px" alt="Ellipse Shape" srcset="">
+                </div>
+                <div onclick="createShape(canvas,star)">
+                    <img src="./shapes/star.svg" width="50px" id="star" alt="Star Shape" srcset="">
+                </div>
+                <div onclick="createShape(canvas,heart)">
+                    <img src="./shapes/heart.svg" width="50px" id="heart" alt="Heart Shape" srcset="">
+                </div>
+                <div onclick="createShape(canvas,hexa)">
+                    <img src="./shapes/hexagon.svg" width="50px" id="hexa" alt="Hexagon Shape" srcset="">
+                </div>
+                <div onclick="createShape(canvas,hrsquare)">
+                    <img src="./shapes/halfroundsquare.svg" width="50px" id="hrsquare" alt="Semi Round Corner Square Shape" srcset="">
+                </div>
+                <div onclick="createShape(canvas,cloud)">
+                    <img src="./shapes/cloud.svg" width="50px" id="cloud" alt="Cloud Shape" srcset="">
+                </div>
+                <div onclick="createShape(canvas,pentagon)">
+                    <img src="./shapes/pentagon.svg" width="50px" id="pentagon" alt="Pentagon Shape" srcset="">
+                </div>
+                <div onclick="createShape(canvas,star4)">
+                    <img src="./shapes/star4.svg" width="50px" id="star4" alt="4 Corner Star Shape" srcset="">
+                </div>
+                <div onclick="createShape(canvas,arrow)">
+                    <img src="./shapes/arrow.svg" width="50px" id="arrow" alt="Arrow Shape" srcset="">
+                </div>
+                <div onclick="createShape(canvas,msgBubble)">
+                    <img src="./shapes/msgbubble.svg" width="50px" id="msgBubble" alt="Msg Bubble Shape" srcset="">
+                </div>
+            </div>
+            <div class="expandedMenu" id="templatesMenu">
+                <p>Design Templates</p>
+                <p> Coming Soon!</p>
+            </div>
+        </div>
+        <div class="canvSection">
+            <div class="commands">
+                
+                <select name="" id="fontSelector" >
+                    <option value="BebasNeue-Regular">Arial</option>
+                    <option value="BebasNeue-Regular">BebasNeue-Regular</option>
+                    <option value="Lato-Bold">Lato-Bold</option>
+                    <option value="Lato-Italic">Lato-Italic</option>
+                    <option value="Lato-Regular">Lato-Regular</option>
+                    <option value="Lobster-Regular">Lobster-Regular</option>
+                    <option value="SquarePeg-Regular">SquarePeg-Regular</option>
+                    <option value="Updock-Regular">Updock-Regular</option>
+                    <option value="Whisper-Regular">Whisper-Regular</option>
+                    <option value="Pacifico-Regular">Pacifico-Regular</option>
+                </select>
+                <button onclick="pickColor()">
+                    <i class="fa-solid fa-palette" id="colorIcon"></i>
+                    <input value="#000000" id="colorPicker" type="color" hidden>
+                    <span class="tooltip">Color</span>
+                </button>
+                <button onclick="toggleMode(modes.pan)" id="pan">
+                    <i class="fa-regular fa-hand"></i>
+                    <span class="tooltip">Movement</span>
+                </button>
+                <button onclick="cropImage(canvas)" id="crop">
+                    <i class="fa-solid fa-crop"></i>
+                    <span class="tooltip">Crop</span>
+                </button>
+                <button onclick="crop(cropper)" id="cropBtn">
+                    <i class="fa-solid fa-check"></i>
+                    <span class="tooltip">Done</span>
+                </button>
+                <button onclick="cancelCrop(canvas)" id="cancelBtn">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span class="tooltip">Cancel</span>
+                </button>
+                <button onclick="groupObjects(canvas, true)" id="group">
+                    <i class="fa-regular fa-object-group"></i>
+                    <span class="tooltip">Group</span>
+                </button>
+                <button onclick="groupObjects(canvas, false)" id="ungroup">
+                    <i class="fa-regular fa-object-ungroup"></i>
+                    <span class="tooltip">Ungroup</span>
+                </button>
+                <button onclick="moveLayer(canvas,1)" id="forward">
+                    <i class="fa-solid fa-clone"></i>
+                    <span class="tooltip">Forward</span>
+                </button>
+                <button onclick="moveLayer(canvas,0)" id="backward">
+                    <i class="fa-regular fa-clone"></i>
+                    <span class="tooltip">Backwards</span>
+                </button>
+                <button onclick="zoomIn(canvas)" id="zoomIn">
+                    <i class="fa-solid fa-magnifying-glass-plus"></i>
+                    <span class="tooltip">Zoom In</span>
+                </button>
+                <button onclick="zoomOut(canvas)" id="zoomOut">
+                    <i class="fa-solid fa-magnifying-glass-minus"></i>
+                    <span class="tooltip">Zoom Out</span>
+                </button>
+            </div>
+            <div class="canv">
+                <canvas id="canvas" style="border: 1px solid black;">
+                </canvas>
+                <div id="cropContainer" style="border: 1px solid black; display: none;">
+                    <img src="" id="croppingImg" style="display: block; max-width: 100%;" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="./lib/fabric.min.js"></script>
+<script src="./lib/cropper.min.js"></script>
+<script src="./js/index.js"></script>
+</body>
+</html>
